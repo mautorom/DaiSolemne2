@@ -181,7 +181,13 @@ div.bienvenida{
     width: 100px;
 	margin-right:auto;
 }
-
+.btnFormato{
+    
+    	display: inline-block;	
+	height: 30px;
+        width:100px;
+	margin-left:auto;
+}
 input[type="button"]:hover {
     background-color:white;
     color: windowtext;
@@ -278,4 +284,11 @@ li{
 #Grilla > table{
 	width:100%;
 }
+.listarUsua table, th, td{	
+        border: 1px solid black;
+        width: 70%;
+	margin-left:auto;
+	margin-right:auto;
+}
+
 /*fin bloque grilla*/

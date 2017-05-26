@@ -1,7 +1,7 @@
 <?php
 
-include_once "/GenericDAO.php";
-include_once "/../model/Persona.php";
+include_once __DIR__."/GenericDAO.php";
+include_once __DIR__."/../model/Persona.php";
 
 /**
  * Description of PersonaDAO
@@ -23,37 +23,83 @@ class PersonaDAO implements GenericDAO {
     
     public function actualizar($registro) {
         
+
+          $query = "update persona "
+                  . "set nombre = :nombre, "
+                  . "apellido = :apellido, "
+                  . "fecha_nacimiento = :fecha_nacimiento, "
+                  . "email = :email "
+                  . "where rut =  :rut  ";
+
+        $sentencia = $this->conexion->prepare($query);
+
+        $rut = $registro->getRut();
+        $nombre = $registro->getNombre();
+        $apellido = $registro->getApellido();
+        $fechaNacimiento = $registro->getFechaNacimiento();
+        $email = $registro->getEmail();
+
+        
+        $sentencia->bindParam(':rut', $rut);
+        $sentencia->bindParam(':nombre', $nombre);
+        $sentencia->bindParam(':apellido', $apellido);
+        $sentencia->bindParam(':fecha_nacimiento', $fechaNacimiento);
+        $sentencia->bindParam(':email', $email);        
+              
+        return $sentencia->execute();
     }
 
     public function agregar($registro) {
         /*@var $registro Persona */
         
-        $query = "INSERT INTO persona (nombre,fecha_nacimiento) VALUES (:nombre, :fecha_nacimiento)";
+        $query = "INSERT INTO persona (rut,nombre,apellido,fecha_nacimiento, email) VALUES (:rut, :nombre, :apellido, :fecha_nacimiento, :email) ";
         
         $sentencia = $this->conexion->prepare($query);
         
+        $rut = $registro->getRut();
         $nombre = $registro->getNombre();
-        $fechaNacimiento = date('Y/m/d',strtotime($registro->getFechaNacimiento()));       
+        $apellido = $registro->getApellido();
+        $fechaNacimiento = $registro->getFechaNacimiento();
+        $email = $registro->getEmail();
         
-        $sentencia->bindParam(':nombre', $nombre);        
+        $sentencia->bindParam(':rut', $rut);
+        $sentencia->bindParam(':nombre', $nombre);
+        $sentencia->bindParam(':apellido', $apellido);
         $sentencia->bindParam(':fecha_nacimiento', $fechaNacimiento);
-        
-        
-
-//        $test1='2010-04-19 18:31:27';
-//        echo date('d/m/Y',strtotime($fechaNacimiento));
-
+        $sentencia->bindParam(':email', $email);        
               
         return $sentencia->execute();
 
     }
 
     public function buscarPorId($idRegistro) {
+
+        $registros = $this->conexion->query("SELECT * FROM persona where rut = '".$idRegistro."' ");
+        $persona = new Persona();
+        
+        if($registros != null) {
+            foreach($registros as $fila) {
+                
+                $persona->setRut($fila["rut"]);
+                $persona->setNombre($fila["nombre"]);
+                $persona->setApellido($fila["apellido"]);
+                $persona->setFechaNacimiento($fila["fecha_nacimiento"]);
+                $persona->setEmail($fila["email"]);
+
+                
+            }
+        }
+        
+        return $persona;  
         
     }
 
     public function eliminar($idRegistro) {
+             
+        $query = "delete from persona where rut = '".$idRegistro."' "; 
         
+        $sentencia = $this->conexion->query($query);
+        return $sentencia->execute();
     }
 
     public function listarTodos() {
@@ -64,11 +110,11 @@ class PersonaDAO implements GenericDAO {
         if($registros != null) {
             foreach($registros as $fila) {
                 $persona = new Persona();
-//                $persona->setRut($fila["rut"]);
+                $persona->setRut($fila["rut"]);
                 $persona->setNombre($fila["nombre"]);
-//                $persona->setApellido($fila["apellido"]);
+                $persona->setApellido($fila["apellido"]);
                 $persona->setFechaNacimiento($fila["fecha_nacimiento"]);
-//                $persona->setEmail($fila["email"]);
+                $persona->setEmail($fila["email"]);
 
                 array_push($listado, $persona);
             }
