@@ -1,6 +1,7 @@
-<?php
-
+<?php       
     session_start();
+    include_once "/controller/PersonaController.php";
+    $listadoPersonas = PersonaController::listarPersonasRegistradas();    
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +25,18 @@
 				</div>
 			</header>
 			
+                         <?php
+                            foreach($listadoPersonas as $persona) {
+                                /*@var $persona Persona */
+                        ?>
+<!--                        Faltaria condicionar por el mes...no recuerdo si se requiere-->
+                        <div style="width: 150px; height: 150px; display: inline-table; margin:10px; border-style: dotted; align-content: center;">
+                            <h4><?= $persona->getNombre() ?></h4>
+                            <h4><?= $persona->getFechaNacimiento() ?></h4>
+                        </div>                            
+                        <?php
+                            }
+                        ?>
 			
 			
 			<footer>
