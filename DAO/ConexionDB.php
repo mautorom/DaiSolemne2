@@ -3,7 +3,7 @@
 class ConexionDB {
 
     const HOST = "localhost";
-    const DBNAME = "dai5501_001v_FSoto_MToro";
+    const DBNAME = "dai5501_001v_fsoto_mtoro";
     const PORT = "3306";
     const USER = "root";
     const PASS = "";

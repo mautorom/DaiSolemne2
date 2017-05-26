@@ -1,7 +1,7 @@
 <?php
 
-include_once __DIR__."/../dao/ConexionDB.php";
-include_once __DIR__."/../dao/PersonaDAO.php";
+include_once "/../dao/ConexionDB.php";
+include_once "/../dao/PersonaDAO.php";
 
 /**
  * Description of PersonaController
@@ -17,17 +17,13 @@ class PersonaController {
         return $daoPersona->listarTodos();
     }
     
-    public static function registrarPersona($rut, $nombre, $apellido,
-                                            $fechaNacimiento, $email) {
+    public static function registrarPersona($nombre,$fechaNacimiento) {
         
         // validar que los datos sean válidos
         
         $persona = new Persona();
-        $persona->setRut($rut);
         $persona->setNombre($nombre);
-        $persona->setApellido($apellido);
         $persona->setFechaNacimiento($fechaNacimiento);
-        $persona->setEmail($email);
         
         $conexion = ConexionDB::getConexion();
         $daoPersona = new PersonaDAO($conexion);

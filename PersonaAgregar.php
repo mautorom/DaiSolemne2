@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     PersonaController::registrarPersona($rut, $nombre, $apellido, $fechaNacimiento, $email);
     
-    header('Location: PersonasListar.php');
+    header('Location: Configuracion.php');
     
 }
 else

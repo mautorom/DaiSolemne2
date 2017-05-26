@@ -1,7 +1,7 @@
 <?php
 
-include_once __DIR__."/GenericDAO.php";
-include_once __DIR__."/../model/Persona.php";
+include_once "/GenericDAO.php";
+include_once "/../model/Persona.php";
 
 /**
  * Description of PersonaDAO
@@ -28,21 +28,15 @@ class PersonaDAO implements GenericDAO {
     public function agregar($registro) {
         /*@var $registro Persona */
         
-        $query = "INSERT INTO persona (rut,nombre,apellido,fecha_nacimiento, email) VALUES (:rut, :nombre, :apellido, :fecha_nacimiento, :email) ";
+        $query = "INSERT INTO persona (nombre,fecha_nacimiento) VALUES (:nombre, :fecha_nacimiento)";
         
         $sentencia = $this->conexion->prepare($query);
         
-        $rut = $registro->getRut();
         $nombre = $registro->getNombre();
-        $apellido = $registro->getApellido();
-        $fechaNacimiento = $registro->getFechaNacimiento();
-        $email = $registro->getEmail();
+        $fechaNacimiento = $registro->getFechaNacimiento();       
         
-        $sentencia->bindParam(':rut', $rut);
-        $sentencia->bindParam(':nombre', $nombre);
-        $sentencia->bindParam(':apellido', $apellido);
-        $sentencia->bindParam(':fecha_nacimiento', $fechaNacimiento);
-        $sentencia->bindParam(':email', $email);        
+        $sentencia->bindParam(':nombre', $nombre);        
+        $sentencia->bindParam(':fecha_nacimiento', $fechaNacimiento);      
               
         return $sentencia->execute();
 
@@ -64,11 +58,11 @@ class PersonaDAO implements GenericDAO {
         if($registros != null) {
             foreach($registros as $fila) {
                 $persona = new Persona();
-                $persona->setRut($fila["rut"]);
+//                $persona->setRut($fila["rut"]);
                 $persona->setNombre($fila["nombre"]);
-                $persona->setApellido($fila["apellido"]);
+//                $persona->setApellido($fila["apellido"]);
                 $persona->setFechaNacimiento($fila["fecha_nacimiento"]);
-                $persona->setEmail($fila["email"]);
+//                $persona->setEmail($fila["email"]);
 
                 array_push($listado, $persona);
             }

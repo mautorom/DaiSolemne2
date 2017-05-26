@@ -1,11 +1,15 @@
 function redireccionPresentacion(){
-	location="Presentacion.php";
+    location="Presentacion.php";
 }
 
 function redireccionSalir(){
-	location="Index.php";
+    location="Index.php";
 }
 
 function redireccionAgregarNuevo(){
-    location="AgregarNuevo.php";
+    location="PersonaAgregar.php";
+}
+
+function redireccionRegresarAConfiguracion(){
+    location="Configuracion.php";
 }

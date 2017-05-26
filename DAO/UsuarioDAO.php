@@ -1,7 +1,7 @@
 <?php
 
-include_once __DIR__."/GenericDAO.php";
-include_once __DIR__."/../model/Usuario.php";
+include_once "/GenericDAO.php";
+include_once "/../Model/Usuario.php";
 
 /**
  * Description of PersonaDAO
@@ -44,10 +44,11 @@ class UsuarioDAO implements GenericDAO {
 
     public function buscarPorId($idRegistro) {
         /*@var $usuario Usuario */
+        
         $usuario = null;
         
-        $sentencia = $this->conexion->prepare("SELECT email, clave FROM usuario WHERE email = :email");
-        
+        $sentencia = $this->conexion->prepare("SELECT email, clave FROM usuario WHERE email = :email");  //:email
+//        print_r($sentencia);
         $email = $idRegistro;
         $sentencia->bindParam(':email', $email);
         

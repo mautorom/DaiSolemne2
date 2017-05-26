@@ -44,6 +44,6 @@ function validacion(){
 		return false;
 	}
 	
-	document.forms['frmBotones'].action = "Configuracion.php";
+        document.forms['frmBotones'].action = "Configuracion.php";
 	
 }

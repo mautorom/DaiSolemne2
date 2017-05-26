@@ -1,8 +1,8 @@
 <?php
 
-include_once __DIR__."/../dao/ConexionDB.php";
-include_once __DIR__."/../model/Usuario.php";
-include_once __DIR__."/../dao/UsuarioDAO.php";
+include_once "/../dao/ConexionDB.php";
+include_once "/../model/Usuario.php";
+include_once "/../dao/UsuarioDAO.php";
 
 /**
  * Description of UsuarioController
@@ -34,9 +34,10 @@ class UsuarioController {
     public static function validarUsuarioClave($email, $clave) {
         
         $conexion = ConexionDB::getConexion();
+
         $daoUsuario= new UsuarioDAO($conexion);
-        
-        $usuario = $daoUsuario->buscarPorId($email);
+//        print_r($email);
+        $usuario = $daoUsuario->buscarPorId($email);     
         
         if($usuario == null)  {
             return false;

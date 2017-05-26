@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<meta name="viewport" content="width=device-width; initial-scale=1.0;">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Zona de Cumpleaños</title>
 		<link rel="stylesheet" type="text/css" href="css/principal.css"  media="all">
 		<script type="text/javascript" src="js\validacion.js"></script>
@@ -19,6 +19,8 @@
 					<img alt="logo empresa" src="logo.png"  />
 				</div>
 			</header>
+                            
+
 			<div class="bienvenida">
 				<p><strong>
 					Bienvenido a Zona de Cumpleaños, en esta aplicación podrás <br/>
