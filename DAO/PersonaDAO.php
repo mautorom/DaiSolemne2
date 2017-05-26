@@ -33,10 +33,16 @@ class PersonaDAO implements GenericDAO {
         $sentencia = $this->conexion->prepare($query);
         
         $nombre = $registro->getNombre();
-        $fechaNacimiento = $registro->getFechaNacimiento();       
+        $fechaNacimiento = date('Y/m/d',strtotime($registro->getFechaNacimiento()));       
         
         $sentencia->bindParam(':nombre', $nombre);        
-        $sentencia->bindParam(':fecha_nacimiento', $fechaNacimiento);      
+        $sentencia->bindParam(':fecha_nacimiento', $fechaNacimiento);
+        
+        
+
+//        $test1='2010-04-19 18:31:27';
+//        echo date('d/m/Y',strtotime($fechaNacimiento));
+
               
         return $sentencia->execute();
 

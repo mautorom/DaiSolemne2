@@ -81,6 +81,10 @@
                 <input id="btnSale" type="button" value="Salir" onclick="redireccionSalir();" />           
             <div/>
             <footer>
+                <?php
+                $test1='2010-04-19 18:31:27';
+                echo date('d/m/Y',strtotime($test1));
+                ?>
                 <p>Diseño de Aplicaciones para Internet</p>
             </footer>
         </div>			

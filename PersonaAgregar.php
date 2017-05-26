@@ -1,21 +1,15 @@
 <?php
 
-
-
-
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include_once __DIR__.'/Controller/PersonaController.php';
-    
-    
-    $rut = $_POST["txtrut"];
+        
+//    $rut = $_POST["txtrut"];
     $nombre = $_POST["txtnombre"];
-    $apellido = $_POST["txtape"];
+//    $apellido = $_POST["txtape"];
     $fechaNacimiento = $_POST["txtfecha"];
-    $email = $_POST["txtmail"];
-    
-    
-    PersonaController::registrarPersona($rut, $nombre, $apellido, $fechaNacimiento, $email);
+//    $email = $_POST["txtmail"];
+        
+    PersonaController::registrarPersona($nombre, $fechaNacimiento);
     
     header('Location: Configuracion.php');
     
@@ -56,16 +50,16 @@ else
                         <div id="Datos">
                             
                             <form action="PersonaAgregar.php" method="POST" onsubmit="return ">
-				Rut:
-                                <input id="txtrut" name="txtrut" type="text" required/>
+<!--				Rut:
+                                <input id="txtrut" name="txtrut" type="text" required/>-->
 				Nombre:
 				<input id="txtnombre" name="txtnombre" type="text" required/>
-                                Apellido:
-				<input id="txtape" name="txtape" type="text" required/>
+<!--                                Apellido:
+				<input id="txtape" name="txtape" type="text" required/>-->
 				Fecha de Nacimiento:
 				<input id="txtfecha" name="txtfecha"  type="date" required/>
-                                Mail:
-                                <input id="txtmail" name="txtmail"  type="email" required/>
+<!--                                Mail:
+                                <input id="txtmail" name="txtmail"  type="email" required/>-->
                                 
                                 <input id="btnAgrega" type="submit" value="Agregar" class="btnFormato" />
 				<input id="btnSale" type="button" value="Salir" class="btnFormato" onclick="redireccionSalir()" />
